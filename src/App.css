@@ -23,6 +23,68 @@
   to { transform: rotate(360deg); }
 }
 
+/* For FileUpload */
+#form-container {
+    width: 65%;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+div#uploadMessage {
+    border: 3px solid #81c673;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #81c673;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+#upload-form div.form-group.fieldset {
+    text-align: left;
+    margin: 10px;
+}
+
+input.form-control[disabled] {
+    background-color: gray;
+}
+
+#upload-form label.control-label.label-title {
+    font-size: 16px;
+    color: #f2bb80;
+}
+
+input[type="submit"] {
+    margin-bottom: 10px;
+}
+
+/** These styles create a fieldset legend effect around a group of elements **/
+
+.legend-fieldset
+{
+    border: 1px solid #ddd;
+    margin-top: 1em;
+    width: 120%;
+}
+
+.legend-fieldset h1
+{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.legend-fieldset h1 span
+{
+    display: inline;
+    border: 1px solid #ddd;
+    background: cornflowerblue;
+    padding: 5px 10px;
+    position: relative;
+    top: -1.3em;
+    color: black;
+}
+
+
 
 /* For FileDataTable */
 table, tr, th, td {
