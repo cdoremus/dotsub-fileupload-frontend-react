@@ -11,9 +11,14 @@ class FileDataTable extends Component {
   }
 
   componentDidMount() {
+    console.log('FileDataTable.componentDidMount() this.state.fileDataList', this.state.fileDataList)
     this.updateFileDataList(this.props.fileDataList);
     // this.setState({fileDataList: this.props.fileDataList});
-    // console.log('FileDataList in FileDataTable', this.state.fileDataList)
+  }
+
+  componentDidUpdate(props, state) {
+    console.log('FileDataTable.componentDidUpdate() with props', props);
+    console.log('FileDataTable.componentDidUpdate() with state', state);
   }
 
   updateFileDataList(fileDataList) {
@@ -32,16 +37,16 @@ class FileDataTable extends Component {
             <td> {file.id} </td>
             <td> {file.title} </td>
             <td> {file.description} </td>
-            <td> <a href="">{ file.filename }</a> </td>
+            <td> <a href={`http://localhost:8080/uploadservice/files/${file.filename}`}>{ file.filename }</a> </td>
             <td> {file.createdDate} </td>
           </tr>)
         }
       )
 
-      table = <div>
-        <div class="table-legend">Uploaded Files</div>
-        <div class="table-container">
-            <table class="centerTable">
+      table = <div className="filedatatable">
+        <div className="table-legend">Uploaded Files</div>
+        <div className="table-container">
+            <table className="centerTable">
                 <tr>
                     <th>Id</th>
                     <th>Title</th>
@@ -52,7 +57,6 @@ class FileDataTable extends Component {
                 { rows }
           </table>
         </div>
-
         </div>
       } else {
         table = <span>No Metatdata available</span>
