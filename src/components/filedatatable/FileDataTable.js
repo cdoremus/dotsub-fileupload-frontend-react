@@ -38,12 +38,12 @@ class FileDataTable extends Component {
             <td> {file.title} </td>
             <td> {file.description} </td>
             <td> <a href={`http://localhost:8080/uploadservice/files/${file.filename}`}>{ file.filename }</a> </td>
-            <td> {file.createdDate} </td>
+            <td> {file.createDate} </td>
           </tr>)
         }
       )
 
-      table = <div className="filedatatable">
+      table =<div><div className="filedatatable">
         <div className="table-legend">Uploaded Files</div>
         <div className="table-container">
             <table className="centerTable">
@@ -56,6 +56,7 @@ class FileDataTable extends Component {
                 </tr>
                 { rows }
           </table>
+        </div>
         </div>
         </div>
       } else {

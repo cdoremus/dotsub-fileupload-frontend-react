@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import FileUpload from './components/fileupload/FileUpload';
 import FileDataTable from './components/filedatatable/FileDataTable';
@@ -20,11 +20,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <FileUpload emitMetatdata={this.uploadedFileRecordsChanged}/>
+        <header>
+          <img src={logo} alt="logo" />
+        </header>
+        <main>
+          <FileUpload emitMetatdata={this.uploadedFileRecordsChanged}/>
+        </main>
+        <footer>
+          <hr/>
+          <a href="https://dotsub.com">Dotsub</a> <span>- the leading way to caption and translate videos online - is not affiliated with this web site.</span>
+          <hr/>
+        </footer>
       </div>
     );
   }

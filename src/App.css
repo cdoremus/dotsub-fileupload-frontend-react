@@ -2,28 +2,8 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 /* For FileUpload */
+
 #form-container {
     width: 65%;
     padding: 20px;
@@ -57,6 +37,8 @@ input[type="submit"] {
     margin-bottom: 10px;
 }
 
+
+
 /** These styles create a fieldset legend effect around a group of elements **/
 
 .legend-fieldset
@@ -84,19 +66,17 @@ input[type="submit"] {
     color: black;
 }
 
-
-
 /* For FileDataTable */
-table, tr, th, td {
+.centerTable > tr, .centerTable > tr > th, .centerTable > tr > td {
     border: 3px solid black;
-    padding: 10px;
+    padding: 5px;
 }
-th {
+th, td {
     text-align: center;
 }
 
-.centerTable {
-     margin: 0px auto;
+table.centerTable {
+  margin: 0px auto;
 }
 
 .table-legend {

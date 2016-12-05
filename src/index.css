@@ -1,5 +1,85 @@
-body {
+/* from original app.scss */
+body#app-body {
+  background-color: #2356a8;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+a:visited {
+  color: black;
+}
+
+a:link {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+/* From App */
+
+* {
+  color: #FFEF00;
+}
+
+img {
+  width: 100px;
+  margin-right: 25px;
+  float: left;
+}
+
+#nav-links {
+  float: right;
+}
+
+#nav-links a {
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+#nav-links a:visited {
+  color: black;
+}
+
+#nav-links a:link {
+  color: white;
+}
+
+#nav-links a:hover {
+  color: white;
+}
+
+h3 {
+  font-size: 20px;
+  color: white;
+}
+
+
+header {
+  background-color: blue;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+main {
+  padding: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+  display: block;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+footer hr {
+  margin: 2px 20px;
 }
