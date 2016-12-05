@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 import FileUpload from './components/fileupload/FileUpload';
-import FileDataTable from './components/filedatatable/FileDataTable';
 
 class App extends Component {
 
