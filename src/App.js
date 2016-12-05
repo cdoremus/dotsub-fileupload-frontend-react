@@ -25,7 +25,6 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <FileUpload emitMetatdata={this.uploadedFileRecordsChanged}/>
-        <FileDataTable fileDataList={this.state.fileDataList} />
       </div>
     );
   }

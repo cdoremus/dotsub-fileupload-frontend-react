@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 // import 'bootstrap/dist/css/bootstrap.css';
-import FileUploadService from './FileUploadService'
+import FileUploadService from './FileUploadService';
+import FileDataTable from '../filedatatable/FileDataTable';
+
 class FileUpload extends Component {
 
   constructor(props) {
@@ -17,6 +19,7 @@ class FileUpload extends Component {
           createdDate: ''
 
         },
+      fileDataList: [],
       filesToUpload: [],
       hasUploadedFile: false
     }
@@ -41,11 +44,13 @@ class FileUpload extends Component {
   render() {
     let msgDiv = '';
     if (this.state.message) {
-      msgDiv = <div><div id="uploadMessage">{ this.state.message }</div></div>
+      msgDiv = <div>
+        <div id="uploadMessage">{ this.state.message }</div>
+      </div>
     }
     let formDiv;
     if (this.state.hasUploadedFile) {
-       formDiv =  <form id="upload-form" onSubmit={ (event) => this.submitFileMetadata(event) } noValidate>
+       formDiv =  <div><form id="upload-form" onSubmit={ (event) => this.submitFileMetadata(event) } noValidate>
           <div id="upload-data-container">
             <label className="control-label label-title">Please Enter and Submit File Title and Description</label>
             <div className="form-group fieldset">
@@ -88,11 +93,14 @@ class FileUpload extends Component {
             <input type="submit"  className="btn btn-primary" value="Submit"/>
           </div>
           </form>
+        <FileDataTable fileDataList={this.state.fileDataList} />
+          </div>
     } else {
       formDiv = <div><label className="control-label label-title">Please Choose a File to Upload</label>
           <div className="form-group fieldset">
             <input type="file"  className="form-control" name="uploadedFile" onChange={ (event) => this.uploadFile(event) } />
           </div>
+        <FileDataTable fileDataList={this.state.fileDataList} />
           </div>
     }
 
@@ -148,6 +156,7 @@ class FileUpload extends Component {
   }
 
   emitMetatdata(metadata) {
+    this.setState({fileListData: metadata});
     return metadata;
   }
 
