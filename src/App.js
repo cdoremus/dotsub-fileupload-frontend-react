@@ -24,6 +24,7 @@ class App extends Component {
           <img src={logo} alt="logo" />
         </header>
         <main>
+          <h3>React File Upload Form with Spring Rest Controller Back End</h3>
           <FileUpload emitMetatdata={this.uploadedFileRecordsChanged}/>
         </main>
         <footer>
