@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "@types/node": "^0.0.2",
+    "@types/react": "^0.14.52",
     "react-scripts": "0.7.0"
   },
   "dependencies": {
