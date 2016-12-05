@@ -32,7 +32,6 @@ See the dotsub-fileupload-frontend project for details on the application struct
 ## Bugs and Improvements
 There are bugs and improvements that need to be done in this project:
 * The FileDataList component does not render when the page is first displayed.
-* You need to select the file to upload twice and select a different file the second time
 * Submitting the metadata form does not re-render the FileDataList component.
 * The FileDataList component needs to be moved into the App component container
 * Unit and end-to-end tests need to be implemented

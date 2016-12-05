@@ -20,7 +20,6 @@ class FileUpload extends Component {
 
         },
       fileDataList: [],
-      filesToUpload: [],
       hasUploadedFile: false
     }
     this.submitFileMetadataSubscription = undefined;
@@ -161,14 +160,13 @@ class FileUpload extends Component {
   }
 
    uploadFile(fileInput) {
-        console.log('File selected: ', fileInput);
-        console.log('File selected value: ', fileInput.target.value);
-        console.log('File selected array: ', fileInput.target.files);
+        console.log('FileUpload.uploadFile() file selected: ', fileInput);
+        console.log('FileUpload.uploadFile() file selected value: ', fileInput.target.value);
+        let files = fileInput.target.files;
+        console.log('FileUpload.uploadFile() file selected array: ', files);
 
-        this.setState({filesToUpload: fileInput.target.files});
-        console.log('File selected: ', this.state.filesToUpload);
-        if (this.state.filesToUpload && this.state.filesToUpload.length > 0) {
-            let file = this.state.filesToUpload[0];
+        if (files && files.length > 0) {
+            let file = files[0];
             // validate size < 2MB
             if (file.size > 2000000) {
                 this.setState({message: `Size of file ${file.name} is too large. Please select a file less than 2MB.`});
