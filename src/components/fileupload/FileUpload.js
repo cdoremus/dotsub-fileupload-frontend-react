@@ -17,7 +17,6 @@ class FileUpload extends Component {
           description: '',
           filename: '',
           createdDate: ''
-
         },
       fileDataList: [],
       hasUploadedFile: false
@@ -25,10 +24,11 @@ class FileUpload extends Component {
     this.submitFileMetadataSubscription = undefined;
     this.findAllMetatdataSubscription = undefined;
     this.uploadService = new FileUploadService();
+    this.findAllMetatdata();
   }
 
   componentDidMount() {
-    this.findAllMetatdata();
+    // this.findAllMetatdata();
   }
 
   componentWillUnmount() {
@@ -146,7 +146,9 @@ class FileUpload extends Component {
       .subscribe( resp => {
         let fileData = resp.data;
         console.log('FileUpload.findAllMetatdata() all metatdata found', fileData);
-          this.emitMetatdata(fileData);
+        this.setState({fileDataList: fileData});
+        console.log('FileUpload.findAllMetatdata() state.fileDataList', this.state.fileDataList);
+        this.emitMetatdata(fileData);
       },
       error => {
           console.log('Error finding all file records', error);
@@ -155,7 +157,6 @@ class FileUpload extends Component {
   }
 
   emitMetatdata(metadata) {
-    this.setState({fileListData: metadata});
     return metadata;
   }
 
