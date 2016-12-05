@@ -27,7 +27,7 @@ class FileDataTable extends Component {
 
   render() {
     console.log('FileDataTable.render() called');
-    console.log('FileDataList in FileDataTable', this.state.fileDataList)
+    console.log('FileDataTable.render() state.fileDataList', this.state.fileDataList)
     let table = null;
     let fileDataList = this.state.fileDataList;
     if (fileDataList && fileDataList.length > 0) {

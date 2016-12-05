@@ -41,6 +41,8 @@ class FileUpload extends Component {
   }
 
   render() {
+    console.log('FileUpload.render() called');
+    console.log('FileUpload.render() state.fileDataList', this.state.fileDataList)
     let msgDiv = '';
     if (this.state.message) {
       msgDiv = <div>
