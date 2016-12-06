@@ -4,32 +4,12 @@ class FileDataTable extends Component {
 
   constructor(props) {
     super(props)
-    // this.props.updateFileDataList = this.updateFileDataList;
-    this.state = {
-      fileDataList: [],
-    }
-  }
-
-  componentDidMount() {
-    console.log('FileDataTable.componentDidMount() this.state.fileDataList', this.state.fileDataList)
-    this.updateFileDataList(this.props.fileDataList);
-    // this.setState({fileDataList: this.props.fileDataList});
-  }
-
-  componentDidUpdate(props, state) {
-    console.log('FileDataTable.componentDidUpdate() with props', props);
-    console.log('FileDataTable.componentDidUpdate() with state', state);
-  }
-
-  updateFileDataList(fileDataList) {
-    this.setState({fileDataList: fileDataList});
   }
 
   render() {
     console.log('FileDataTable.render() called');
-    console.log('FileDataTable.render() state.fileDataList', this.state.fileDataList)
     let table = null;
-    let fileDataList = this.state.fileDataList;
+    let fileDataList = this.props.fileDataList;
     if (fileDataList && fileDataList.length > 0) {
       let rows = [];
       fileDataList.forEach((file) => {

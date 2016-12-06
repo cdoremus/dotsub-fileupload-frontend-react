@@ -24,11 +24,10 @@ class FileUpload extends Component {
     this.submitFileMetadataSubscription = undefined;
     this.findAllMetatdataSubscription = undefined;
     this.uploadService = new FileUploadService();
-    this.findAllMetatdata();
   }
 
-  componentDidMount() {
-    // this.findAllMetatdata();
+  componentWillMount() {
+    this.findAllMetatdata();
   }
 
   componentWillUnmount() {
@@ -42,7 +41,7 @@ class FileUpload extends Component {
 
   render() {
     console.log('FileUpload.render() called');
-    console.log('FileUpload.render() state.fileDataList', this.state.fileDataList)
+    // console.log('FileUpload.render() state.fileDataList', this.state.fileDataList)
     let msgDiv = '';
     if (this.state.message) {
       msgDiv = <div>
@@ -134,13 +133,15 @@ class FileUpload extends Component {
           console.log('FileUpload.submitFileMetadata() file metadata: ', file.filename);
           // file holds FileData component including data added on back end
           this.setState({ message: `File '${file.filename}' data record submitted successfully.`});
+          this.findAllMetatdata();
       },
       error => {
           console.log(`Error submitting file metatdata for for ${this.state.currentFileData.filename}`, error);
           this.setState({message: this._parseErrorMessage(`Error submitting file metatdata record for ${this.state.currentFileData.filename}:`, error)});
-      },
-      // on completion, refresh metatdata list
-      () => this.findAllMetatdata());
+      }) ;
+      // ,
+      // // on completion, refresh metatdata list
+      // () => this.findAllMetatdata());
   }
 
   findAllMetatdata() {

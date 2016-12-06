@@ -29,10 +29,8 @@ The application should then be running at [http://localhost:3000](http://localho
 
 See the dotsub-fileupload-frontend project for details on the application structure and requirements implementation.
 
-## Bugs and Improvements
-There are bugs and improvements that need to be done in this project:
-* The FileDataList component does not render when the page is first displayed.
-* Submitting the metadata form does not re-render the FileDataList component.
+## Improvements
+There are improvements that need to be done in this project:
 * The FileDataList component needs to be moved into the App component container
 * Unit and end-to-end tests need to be implemented
 * No About page is shown or navigation demonstrated
