@@ -13,7 +13,7 @@ class FileDataTable extends Component {
     if (fileDataList && fileDataList.length > 0) {
       let rows = [];
       fileDataList.forEach((file) => {
-          rows.push(<tr>
+          rows.push(<tr key={file.id}>
             <td> {file.id} </td>
             <td> {file.title} </td>
             <td> {file.description} </td>
@@ -27,6 +27,7 @@ class FileDataTable extends Component {
         <div className="table-legend">Uploaded Files</div>
         <div className="table-container">
             <table className="centerTable">
+              <tbody>
                 <tr>
                     <th>Id</th>
                     <th>Title</th>
@@ -34,7 +35,8 @@ class FileDataTable extends Component {
                     <th>Uploaded File <span id="download-message">Click to download</span></th>
                     <th>Creation Date</th>
                 </tr>
-                { rows }
+                  { rows }
+                </tbody>
           </table>
         </div>
         </div>

@@ -67,7 +67,7 @@ input[type="submit"] {
 }
 
 /* For FileDataTable */
-.centerTable > tr, .centerTable > tr > th, .centerTable > tr > td {
+.centerTable > tbody > tr, .centerTable > tbody > tr > th, .centerTable > tbody > tr > td {
     border: 3px solid black;
     padding: 5px;
 }
