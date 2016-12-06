@@ -31,7 +31,6 @@ See the dotsub-fileupload-frontend project for details on the application struct
 
 ## Improvements
 There are improvements that need to be done in this project:
-* The FileDataList component needs to be moved into the App component container
 * Unit and end-to-end tests need to be implemented
 * No About page is shown or navigation demonstrated
 

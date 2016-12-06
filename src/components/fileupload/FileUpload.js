@@ -93,14 +93,12 @@ class FileUpload extends Component {
             <input type="submit"  className="btn btn-primary" value="Submit"/>
           </div>
           </form>
-        <FileDataTable fileDataList={this.state.fileDataList} />
           </div>
     } else {
       formDiv = <div><label className="control-label label-title">Please Choose a File to Upload</label>
           <div className="form-group fieldset">
             <input type="file"  className="form-control" name="uploadedFile" onChange={ (event) => this.uploadFile(event) } />
           </div>
-        <FileDataTable fileDataList={this.state.fileDataList} />
           </div>
     }
 
@@ -134,6 +132,7 @@ class FileUpload extends Component {
           // file holds FileData component including data added on back end
           this.setState({ message: `File '${file.filename}' data record submitted successfully.`});
           this.findAllMetatdata();
+          this.emitMetatdata(this.state.fileDataList);
       },
       error => {
           console.log(`Error submitting file metatdata for for ${this.state.currentFileData.filename}`, error);
