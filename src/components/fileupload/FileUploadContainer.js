@@ -88,6 +88,7 @@ class FileUploadContainer extends Component {
           console.log('FileUploadContainer.submitFileMetadata() file metadata: ', file.filename);
           // file holds FileData component including data added on back end
           this.setState({ message: `File '${file.filename}' data record submitted successfully.`});
+          this.setState({hasUploadedFile: false});
           this.findAllMetatdata();
       },
       error => {
