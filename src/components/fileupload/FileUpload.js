@@ -1,60 +1,78 @@
 import React, {Component} from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
-import FileUploadService from './FileUploadService';
-import FileDataTable from '../filedatatable/FileDataTable';
 
 class FileUpload extends Component {
 
   constructor(props) {
     super(props)
     this.emitMetatdata = this.props.emitMetatdata;
+    this.fileUploadCompleted = this.props.fileUploadCompleted;
+    this.metadataFormSubmitted = this.props.metadataFormSubmitted;
+    this.messageNotification = this.props.messageNotification;
 
     this.state = {
-      message: '',
       currentFileData: {
-          id: undefined,
-          title: '',
-          description: '',
-          filename: '',
-          createdDate: ''
+          id: this.props.id,
+          title: this.props.title,
+          description: this.props.description,
+          filename: this.props.filename,
+          createDate: this.props.createDate
         },
-      fileDataList: [],
-      hasUploadedFile: false
     }
-    this.submitFileMetadataSubscription = undefined;
-    this.findAllMetatdataSubscription = undefined;
-    this.uploadService = new FileUploadService();
+  }
+
+  componentDidMount() {
+    console.log('FileUpload.componentDidMount() props.currentFileData', this.props.currentFileData);
   }
 
   componentWillMount() {
-    this.findAllMetatdata();
+    console.log('FileUpload.componentWillMount() props.currentFileData', this.props.currentFileData);
+    if (this.props.currentFileData) {
+      this.setState({currentFileData: this.props.currentFileData});
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('FileUpload.componentWillReceiveProps() props', nextProps);
+    this.setState({currentFileData: nextProps.currentFileData});
   }
 
   componentWillUnmount() {
-    if (this.submitFileMetadataSubscription) {
-      this.submitFileMetadataSubscription.unsubscribe();
-    }
-    if (this.this.findAllMetatdataSubscription) {
-      this.this.findAllMetatdataSubscription.unsubscribe();
-    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('FileUpload.componentWillUpdate() props', nextProps);
+    console.log('FileUpload.componentWillUpdate() state', nextState);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('FileUpload.componentDidUpdate() props', prevProps);
+    console.log('FileUpload.componentDidUpdate() state', prevState);
+    // this.setState({currentFileData: this.props.currentFileData});
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('FileUpload.shouldComponentUpdate() props', nextProps);
+    console.log('FileUpload.shouldComponentUpdate() state', nextState);
+    // if (nextProps.currentFileData === nextState.currentFileData) {
+    //   console.log('FileUpload.shouldComponentUpdate() returns false');
+    //   return false;
+    // } else {
+    //   console.log('FileUpload.shouldComponentUpdate() returns true');
+    //   this.setState({currentFileData: nextProps.currentFileData});
+    //   return true;
+    // }
+    return true;
   }
 
   render() {
     console.log('FileUpload.render() called');
-    // console.log('FileUpload.render() state.fileDataList', this.state.fileDataList)
-    let msgDiv = '';
-    if (this.state.message) {
-      msgDiv = <div>
-        <div id="uploadMessage">{ this.state.message }</div>
-      </div>
-    }
     let formDiv;
-    if (this.state.hasUploadedFile) {
+    if (this.props.hasUploadedFile) {
        formDiv =  <div><form id="upload-form" onSubmit={ (event) => this.submitFileMetadata(event) } noValidate>
           <div id="upload-data-container">
             <label className="control-label label-title">Please Enter and Submit File Title and Description</label>
             <div className="form-group fieldset">
-              <input type="hidden" name="id" onChange={ (event) => this.setState({currentFileData: {id: event.target.value}}) } value={ this.state.currentFileData.id} />
+              <input type="hidden" name="id" value={ this.state.currentFileData.id} />
               <label className="control-label">Record ID</label>
               <input type="text" className="form-control"  name="displayId" value={ this.state.currentFileData.id } disabled="true" />
             </div>
@@ -104,67 +122,37 @@ class FileUpload extends Component {
 
     return (
       <div id="form-container">
-        { msgDiv }
         { formDiv }
       </div>
-
     );
   }
 
   submitFileMetadata(event) {
     console.log('Submitted data', event);
-    console.log('Submitted data value', event.target.value);
+    // console.log('Submitted data value', event.target.value);
     console.log('Current state:', this.state);
 
     // for react
     if (event) {
       event.preventDefault();
     }
+    let fileData = this.state.currentFileData;
     // validate that title and description are filled in
-    if (!this.state.currentFileData.title || !this.state.currentFileData.description) {
-        this.setState({message: 'Title and Description are required'});
+    if (!fileData.title || !fileData.description) {
+        let message = 'Title and Description are required';
+        this.messageNotification(message);
         return;
     }
-    this.submitFileMetadataSubscription = this.uploadService.saveFileMetadata(this.state.currentFileData)
-      .subscribe( (resp) => {
-        let file = resp.data;
-          console.log('FileUpload.submitFileMetadata() file metadata: ', file.filename);
-          // file holds FileData component including data added on back end
-          this.setState({ message: `File '${file.filename}' data record submitted successfully.`});
-          this.findAllMetatdata();
-          this.emitMetatdata(this.state.fileDataList);
-      },
-      error => {
-          console.log(`Error submitting file metatdata for for ${this.state.currentFileData.filename}`, error);
-          this.setState({message: this._parseErrorMessage(`Error submitting file metatdata record for ${this.state.currentFileData.filename}:`, error)});
-      }) ;
-      // ,
-      // // on completion, refresh metatdata list
-      // () => this.findAllMetatdata());
+    this.metadataFormSubmitted(fileData);
   }
 
-  findAllMetatdata() {
-    this.findAllMetatdataSubscription = this.uploadService.findAllMetadata()
-      .subscribe( resp => {
-        let fileData = resp.data;
-        console.log('FileUpload.findAllMetatdata() all metatdata found', fileData);
-        this.setState({fileDataList: fileData});
-        console.log('FileUpload.findAllMetatdata() state.fileDataList', this.state.fileDataList);
-        this.emitMetatdata(fileData);
-      },
-      error => {
-          console.log('Error finding all file records', error);
-          this.message = this._parseErrorMessage(`Error finding all uploaded file records:`, error);
-      });
-  }
-
-  emitMetatdata(metadata) {
-    return metadata;
+  metadataFormSubmitted(fileData) {
+    return fileData;
   }
 
    uploadFile(fileInput) {
         console.log('FileUpload.uploadFile() file selected: ', fileInput);
-        console.log('FileUpload.uploadFile() file selected value: ', fileInput.target.value);
+        // console.log('FileUpload.uploadFile() file selected value: ', fileInput.target.value);
         let files = fileInput.target.files;
         console.log('FileUpload.uploadFile() file selected array: ', files);
 
@@ -172,26 +160,24 @@ class FileUpload extends Component {
             let file = files[0];
             // validate size < 2MB
             if (file.size > 2000000) {
-                this.setState({message: `Size of file ${file.name} is too large. Please select a file less than 2MB.`});
+                let message = `Size of file ${file.name} is too large. Please select a file less than 2MB.`;
+                this.messageNotification(message);
                 return;
             }
-            this.uploadFileSubscription = this.uploadService.upload(file)
-                .subscribe(resp => {
-                    console.log('FIle Upload Response: ' , resp.data);
-                    this.setState({currentFileData: resp.data});
-                    this.setState({hasUploadedFile: true});
-                    this.setState({message: `File '${file.name}' uploaded successfully. Please fill in title and description`});
-                    console.log(`Upload file message: ${this.state.message}`);
-                },
-                error => {
-                    console.log('Error uploading file file metatdata', error);
-                    this.setState({message: this._parseErrorMessage(`Error uploading file ${file.name} with size ${file.size}:`, error)});
-                });
+            this.fileUploadCompleted(file);
         } else {
-            this.setState({message: 'No upload files available'});
-            console.log(this.state.message);
+            let message = 'No upload files available';
+            this.messageNotification(message);
         }
     }
+
+  fileUploadCompleted(fileData) {
+    return fileData;
+  }
+
+  messageNotification(message) {
+    return message;
+  }
 
     _parseErrorMessage(message, error) {
         try { // try to parse out message

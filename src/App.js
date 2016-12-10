@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
-import FileUpload from './components/fileupload/FileUpload';
-import FileDataTable from './components/filedatatable/FileDataTable';
+import FileUploadContainer from './components/fileupload/FileUploadContainer';
 
 class App extends Component {
 
@@ -24,8 +23,7 @@ class App extends Component {
         </header>
         <main>
           <h3>React File Upload Form with Spring Rest Controller Back End</h3>
-          <FileUpload emitMetatdata={(e) => this.uploadedFileRecordsChanged(e)}/>
-          <FileDataTable fileDataList={this.state.fileDataList} />
+          <FileUploadContainer />
         </main>
         <footer>
           <hr/>
