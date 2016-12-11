@@ -20,52 +20,12 @@ class FileUpload extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log('FileUpload.componentDidMount() props.currentFileData', this.props.currentFileData);
-  }
-
-  componentWillMount() {
-    console.log('FileUpload.componentWillMount() props.currentFileData', this.props.currentFileData);
-    if (this.props.currentFileData) {
-      this.setState({currentFileData: this.props.currentFileData});
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     console.log('FileUpload.componentWillReceiveProps() props', nextProps);
     this.setState({currentFileData: nextProps.currentFileData});
   }
 
-  componentWillUnmount() {
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log('FileUpload.componentWillUpdate() props', nextProps);
-    console.log('FileUpload.componentWillUpdate() state', nextState);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('FileUpload.componentDidUpdate() props', prevProps);
-    console.log('FileUpload.componentDidUpdate() state', prevState);
-    // this.setState({currentFileData: this.props.currentFileData});
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('FileUpload.shouldComponentUpdate() props', nextProps);
-    console.log('FileUpload.shouldComponentUpdate() state', nextState);
-    // if (nextProps.currentFileData === nextState.currentFileData) {
-    //   console.log('FileUpload.shouldComponentUpdate() returns false');
-    //   return false;
-    // } else {
-    //   console.log('FileUpload.shouldComponentUpdate() returns true');
-    //   this.setState({currentFileData: nextProps.currentFileData});
-    //   return true;
-    // }
-    return true;
-  }
-
   render() {
-    console.log('FileUpload.render() called');
     let formDiv;
     if (this.props.hasUploadedFile) {
        formDiv =  <div><form id="upload-form" onSubmit={ (event) => this.submitFileMetadata(event) } noValidate>
