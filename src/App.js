@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
-import FileUploadContainer from './components/fileupload/FileUploadContainer';
+import FileUploadContainer from './components/fileuploadcontainer/FileUploadContainer';
 
 class App extends Component {
 

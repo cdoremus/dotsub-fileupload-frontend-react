@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FileUploadService from './FileUploadService';
-import FileUpload from './FileUpload';
+import FileUploadService from '../fileupload/FileUploadService';
+import FileUpload from '../fileupload/FileUpload';
 import FileDataTable from '../filedatatable/FileDataTable';
 import MessageComponent from '../message/MessageComponent';
 
