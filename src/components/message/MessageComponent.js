@@ -4,9 +4,15 @@ import React, { Component } from 'react';
 class MessageComponent extends Component {
 
   render() {
+    let message = this.props.message;
+    let messageDiv = '';
+    if (message) {
+      messageDiv =
+        <div id="uploadMessage">{ message }</div>
+    }
     return (
       <div>
-        <div id="uploadMessage">{ this.props.message }</div>
+        { messageDiv }
       </div>
     );
   }
