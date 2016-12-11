@@ -59,8 +59,8 @@ class FileUploadContainer extends Component {
         console.log('FileUploadContainer.findAllMetatdata() state.fileDataList', this.state.fileDataList);
       },
       error => {
-          console.log('Error finding all file records', error);
-          this.message = this._parseErrorMessage(`Error finding all uploaded file records:`, error);
+        console.log('Error finding all file records', error);
+        this.setState({message: this._parseErrorMessage(`Error finding all uploaded file records:`, error)});
       });
   }
 
@@ -104,14 +104,18 @@ class FileUploadContainer extends Component {
 
   _parseErrorMessage(message, error) {
       try { // try to parse out message
+        // console.log('Body of error message to parse: ', error);
+        let msg = `${message}`;
+        if (error._body) {
           let json = JSON.parse(error._body);
           console.log('Error body parsed', json);
-          let msg = `${message}: ${json.message}`;
+          msg = `${msg}: ${json.message}`;
           console.log(`Parsed message returned: ${msg}`);
-          return msg ;
+        }
+        return msg ;
       } catch (e) {
-          console.log(`Problem parsing error message`, e);
-          return `Error finding all uploaded file records`;
+        console.log(`Problem parsing error message`, e);
+        return `Error finding all uploaded file records`;
       }
 
   }
