@@ -4,7 +4,6 @@ class FileUpload extends Component {
 
   constructor(props) {
     super(props)
-    this.emitMetatdata = this.props.emitMetatdata;
     this.fileUploadCompleted = this.props.fileUploadCompleted;
     this.metadataFormSubmitted = this.props.metadataFormSubmitted;
     this.messageNotification = this.props.messageNotification;
