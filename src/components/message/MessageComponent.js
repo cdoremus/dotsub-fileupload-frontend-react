@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 
 class MessageComponent extends Component {
+  static propTypes = {
+    message: React.PropTypes.string
+  }
 
   render() {
     let message = this.props.message;

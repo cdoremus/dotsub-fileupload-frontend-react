@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 
 class FileUpload extends Component {
+  static propTypes = {
+    hasUploadedFile: React.PropTypes.bool,
+    fileUploadCompleted: React.PropTypes.func,
+    metadataFormSubmitted: React.PropTypes.func,
+    messageNotification:  React.PropTypes.func,
+    currentFileData: React.PropTypes.shape({
+      id: React.PropTypes.number,
+      title: React.PropTypes.string,
+      description: React.PropTypes.string,
+      filename: React.PropTypes.string,
+      createDate: React.PropTypes.string
+    })
+  }
 
   constructor(props) {
     super(props)

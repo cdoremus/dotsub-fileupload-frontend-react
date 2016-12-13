@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
 
 class FileDataTable extends Component {
+  static propTypes = {
+    fileDataList: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number,
+      title: React.PropTypes.string,
+      description: React.PropTypes.string,
+      filename: React.PropTypes.string,
+      createDate: React.PropTypes.string
+    }))
+  }
 
   render() {
     console.log('FileDataTable.render() called');
