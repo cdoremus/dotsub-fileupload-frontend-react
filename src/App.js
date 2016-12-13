@@ -5,16 +5,6 @@ import FileUploadContainer from './components/fileuploadcontainer/FileUploadCont
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      fileDataList:  []
-    }
-  }
-
-  componentDidMount() {
-  }
-
   render() {
     return (
       <div className="App">
@@ -32,12 +22,6 @@ class App extends Component {
         </footer>
       </div>
     );
-  }
-
-  uploadedFileRecordsChanged(event) {
-    console.log('App.uploadedFileRecords() called with event: ', event);
-    this.setState({fileDataList: event});
-    console.log('FileDataList in App', this.state.fileDataList);
   }
 }
 
